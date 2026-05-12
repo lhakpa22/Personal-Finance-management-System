@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Budgets</h1>
+
+{% if budgets %}
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Monthly Limit</th>
+    </tr>
+    {% for budget in budgets %}
+    <tr>
+        <td>{{ budget.category }}</td>
+        <td>£{{ budget.monthly_limit }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No budgets added yet.</p>
+{% endif %}
+{% endblock %}

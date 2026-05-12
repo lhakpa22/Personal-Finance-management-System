@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+<div class="summary">
+    <div class="card">
+        <h3>Total Income</h3>
+        <p>£{{ total_income }}</p>
+    </div>
+    <div class="card">
+        <h3>Total Expense</h3>
+        <p>£{{ total_expense }}</p>
+    </div>
+    <div class="card">
+        <h3>Balance</h3>
+        <p>£{{ balance }}</p>
+    </div>
+</div>
+
+<h2>Your Transactions</h2>
+
+{% if transactions %}
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Date</th>
+    </tr>
+    {% for transaction in transactions %}
+    <tr>
+        <td>{{ transaction.transaction_type }}</td>
+        <td>{{ transaction.category }}</td>
+        <td>£{{ transaction.amount }}</td>
+        <td>{{ transaction.description }}</td>
+        <td>{{ transaction.date_created.strftime('%Y-%m-%d %H:%M') }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No transactions yet.</p>
+{% endif %}
+{% endblock %}
