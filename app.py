@@ -161,3 +161,10 @@ def edit_transaction(transaction_id):
     transaction = Transaction.query.filter_by(
         id=transaction_id, user_id=current_user.id
     ).first_or_404()
+
+    # If the form is submitted, update the transaction
+    if request.method == "POST":
+        transaction_type = request.form.get("transaction_type")
+        category = request.form.get("category")
+        amount = request.form.get("amount")
+        description = request.form.get("description")
