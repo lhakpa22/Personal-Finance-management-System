@@ -199,3 +199,20 @@ def edit_transaction(transaction_id):
 
     # Show edit form with existing transaction details
     return render_template("edit_transaction.html", transaction=transaction)
+
+
+# Route for deleting a transaction
+@app.route("/delete_transaction/<int:transaction_id>", methods=["POST"])
+@login_required
+def delete_transaction(transaction_id):
+    # Find the transaction and check ownership
+    transaction = Transaction.query.filter_by(
+        id=transaction_id, user_id=current_user.id
+    ).first_or_404()
+
+    # Delete transaction from database
+    db.session.delete(transaction)
+    db.session.commit()
+
+    flash("Transaction deleted successfully.", "info")
+    return redirect(url_for("dashboard"))
