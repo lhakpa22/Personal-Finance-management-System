@@ -1,4 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Dashboard heading -->
+<h1>Dashboard</h1>
+
+<!-- Summary cards section -->
+<div class="summary">
+
+    <!-- Total income card -->
+    <div class="card">
+        <h3>Total Income</h3>
+        <p>£{{ total_income }}</p>
+    </div>
+
+    <!-- Total expense card -->
+    <div class="card">
+        <h3>Total Expense</h3>
+        <p>£{{ total_expense }}</p>
+    </div>
+
+    <!-- Remaining balance card -->
+    <div class="card">
+        <h3>Balance</h3>
+        <p>£{{ balance }}</p>
+    </div>
+</div>
+
+<!-- Add transaction button -->
+<a href="{{ url_for('add_transaction') }}" class="btn-edit">
+    Add Transaction
+</a>
+
+<h2>Your Transactions</h2>
+
+<!-- Check if transactions exist -->
 {% if transactions %}
+
 <table>
     <tr>
         <th>Type</th>
@@ -9,6 +47,7 @@
         <th>Actions</th>
     </tr>
 
+    <!-- Loop through each transaction -->
     {% for transaction in transactions %}
     <tr>
         <td>{{ transaction.transaction_type }}</td>
@@ -17,6 +56,7 @@
         <td>{{ transaction.description }}</td>
         <td>{{ transaction.date_created.strftime('%Y-%m-%d %H:%M') }}</td>
 
+        <!-- Action buttons -->
         <td>
             <!-- Edit button sends user to edit transaction page -->
             <a class="btn-edit" href="{{ url_for('edit_transaction', transaction_id=transaction.id) }}">
@@ -26,6 +66,7 @@
             <!-- Delete form uses POST method for safer deletion -->
             <form method="POST" action="{{ url_for('delete_transaction', transaction_id=transaction.id) }}"
                 style="display:inline;">
+
                 <button class="btn-delete" type="submit"
                     onclick="return confirm('Are you sure you want to delete this transaction?');">
                     Delete
@@ -38,3 +79,4 @@
 {% else %}
 <p>No transactions yet.</p>
 {% endif %}
+{% endblock %}
