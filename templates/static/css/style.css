@@ -99,3 +99,28 @@ th, td {
     background: #d1ecf1;
     color: #0c5460;
 }
+
+/* =========================
+   Edit Button Styling
+========================= */
+.btn-edit {
+    background: #ffc107;
+    color: #222;
+    padding: 6px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* =========================
+   Delete Button Styling
+========================= */
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
