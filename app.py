@@ -184,3 +184,18 @@ def edit_transaction(transaction_id):
         except ValueError:
             flash("Please enter a valid amount.", "danger")
             return redirect(url_for("edit_transaction", transaction_id=transaction.id))
+
+        # Update transaction details
+        transaction.transaction_type = transaction_type
+        transaction.category = category
+        transaction.amount = amount
+        transaction.description = description
+
+        # Save changes to database
+        db.session.commit()
+
+        flash("Transaction updated successfully.", "success")
+        return redirect(url_for("dashboard"))
+
+    # Show edit form with existing transaction details
+    return render_template("edit_transaction.html", transaction=transaction)
