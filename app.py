@@ -168,3 +168,19 @@ def edit_transaction(transaction_id):
         category = request.form.get("category")
         amount = request.form.get("amount")
         description = request.form.get("description")
+
+        # Validate amount
+        try:
+            amount = float(amount)
+
+            # Prevent zero or negative values
+            if amount <= 0:
+                flash("Amount must be greater than zero.", "danger")
+
+                # Redirect back to edit page if validation fails
+                return redirect(
+                    url_for("edit_transaction", transaction_id=transaction.id)
+                )
+        except ValueError:
+            flash("Please enter a valid amount.", "danger")
+            return redirect(url_for("edit_transaction", transaction_id=transaction.id))
