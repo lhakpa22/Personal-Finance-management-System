@@ -145,12 +145,6 @@ def add_transaction():
     return render_template("add_transaction.html")
 
 
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
-
-
 # Route for editing an existing transaction
 # This route allows users to edit an existing transaction
 # The transaction ID is passed through the URL
@@ -216,3 +210,9 @@ def delete_transaction(transaction_id):
 
     flash("Transaction deleted successfully.", "info")
     return redirect(url_for("dashboard"))
+
+
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
