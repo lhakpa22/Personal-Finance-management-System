@@ -149,3 +149,15 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
+
+# Route for editing an existing transaction
+# This route allows users to edit an existing transaction
+# The transaction ID is passed through the URL
+@app.route("/edit_transaction/<int:transaction_id>", methods=["GET", "POST"])
+@login_required
+def edit_transaction(transaction_id):
+    # Find the transaction by ID and make sure it belongs to the logged-in user
+    transaction = Transaction.query.filter_by(
+        id=transaction_id, user_id=current_user.id
+    ).first_or_404()
