@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Edit Transaction</h1>
+
+<form method="POST">
+    <!-- Transaction type dropdown with existing value selected -->
+    <label>Transaction Type</label>
+    <select name="transaction_type" required>
+        <option value="income" {% if transaction.transaction_type=="income" %}selected{% endif %}>
+            Income
+        </option>
+        <option value="expense" {% if transaction.transaction_type=="expense" %}selected{% endif %}>
+            Expense
+        </option>
+    </select>
+
+    <!-- Existing category is shown in input -->
+    <label>Category</label>
+    <input type="text" name="category" value="{{ transaction.category }}" required>
+
+    <!-- Existing amount is shown in input -->
+    <label>Amount</label>
+    <input type="number" step="0.01" name="amount" value="{{ transaction.amount }}" required>
+
+    <!-- Existing description is shown in input -->
+    <label>Description</label>
+    <input type="text" name="description" value="{{ transaction.description }}">
+
+    <button type="submit">Update Transaction</button>
+</form>
+{% endblock %}
