@@ -36,7 +36,7 @@ class Budget(db.Model):
     # Primary key
     id = db.Column(db.Integer, primary_key=True)
 
-    # Budget category (Food, Travel, etc.)
+    # Budget category (Food, Travel, Rent, etc.)
     category = db.Column(db.String(100), nullable=False)
 
     # Monthly budget limit
