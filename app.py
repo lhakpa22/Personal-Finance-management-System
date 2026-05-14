@@ -100,6 +100,18 @@ def dashboard():
         t.amount for t in transactions if t.transaction_type == "expense"
     )
     balance = total_income - total_expense
+    # Prepare expense category data for chart
+    expense_by_category = {}
+
+    for transaction in transactions:
+        if transaction.transaction_type == "expense":
+            category = transaction.category
+            expense_by_category[category] = (
+                expense_by_category.get(category, 0) + transaction.amount
+            )
+
+    chart_labels = list(expense_by_category.keys())
+    chart_values = list(expense_by_category.values())
 
     return render_template(
         "dashboard.html",
@@ -107,6 +119,8 @@ def dashboard():
         total_income=total_income,
         total_expense=total_expense,
         balance=balance,
+        chart_labels=chart_labels,
+        chart_values=chart_values,
     )
 
 
