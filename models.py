@@ -27,3 +27,20 @@ class Transaction(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+
+
+# Budget table model
+class Budget(db.Model):
+    __tablename__ = "budgets"
+
+    # Primary key
+    id = db.Column(db.Integer, primary_key=True)
+
+    # Budget category (Food, Travel, etc.)
+    category = db.Column(db.String(100), nullable=False)
+
+    # Monthly budget limit
+    monthly_limit = db.Column(db.Float, nullable=False)
+
+    # Relationship to user
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
