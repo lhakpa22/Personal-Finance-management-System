@@ -124,3 +124,13 @@ th, td {
     border-radius: 4px;
     cursor: pointer;
 }
+
+/* =========================
+   Chart Container Styling
+========================= */
+.chart-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}

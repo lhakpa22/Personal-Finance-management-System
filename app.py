@@ -100,6 +100,7 @@ def dashboard():
         t.amount for t in transactions if t.transaction_type == "expense"
     )
     balance = total_income - total_expense
+
     # Prepare expense category data for chart
     expense_by_category = {}
 
