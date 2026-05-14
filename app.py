@@ -234,6 +234,22 @@ def budgets():
             flash("Please enter a valid budget amount.", "danger")
             return redirect(url_for("budgets"))
 
+        # Create new budget
+        new_budget = Budget(
+            category=category, monthly_limit=monthly_limit, user_id=current_user.id
+        )
+
+        db.session.add(new_budget)
+        db.session.commit()
+
+        flash("Budget added successfully.", "success")
+        return redirect(url_for("budgets"))
+
+    # Get all budgets for logged-in user
+    user_budgets = Budget.query.filter_by(user_id=current_user.id).all()
+
+    return render_template("budgets.html", budgets=user_budgets)
+
 
 if __name__ == "__main__":
     with app.app_context():
