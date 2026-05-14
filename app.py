@@ -248,7 +248,41 @@ def budgets():
     # Get all budgets for logged-in user
     user_budgets = Budget.query.filter_by(user_id=current_user.id).all()
 
-    return render_template("budgets.html", budgets=user_budgets)
+    # Store budget warning information
+    budget_data = []
+
+    # Compare budgets with expenses
+    for budget in user_budgets:
+
+        # Calculate total expense for matching category
+        total_spent = sum(
+            transaction.amount
+            for transaction in Transaction.query.filter_by(
+                user_id=current_user.id,
+                category=budget.category,
+                transaction_type="expense",
+            ).all()
+        )
+
+        # Remaining budget
+        remaining = budget.monthly_limit - total_spent
+
+        # Check if exceeded
+        exceeded = total_spent > budget.monthly_limit
+
+        # Save values for HTML page
+        budget_data.append(
+            {
+                "id": budget.id,
+                "category": budget.category,
+                "monthly_limit": budget.monthly_limit,
+                "spent": total_spent,
+                "remaining": remaining,
+                "exceeded": exceeded,
+            }
+        )
+
+    return render_template("budgets.html", budgets=budget_data)
 
 
 # Update budget from the same budget page
