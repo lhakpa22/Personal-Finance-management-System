@@ -16,17 +16,34 @@
 </form>
 
 <h2>Your Budgets</h2>
-
 {% if budgets %}
 <table>
     <tr>
         <th>Category</th>
         <th>Monthly Limit</th>
+        <th>Actions</th>
     </tr>
     {% for budget in budgets %}
     <tr>
-        <td>{{ budget.category }}</td>
-        <td>£{{ budget.monthly_limit }}</td>
+        <form method="POST" action="{{ url_for('update_budget', budget_id=budget.id) }}">
+            <td>
+                <input type="text" name="category" value="{{ budget.category }}" required>
+            </td>
+
+            <td>
+                <input type="number" step="0.01" name="monthly_limit" value="{{ budget.monthly_limit }}" required>
+            </td>
+
+            <td>
+                <button class="btn-edit" type="submit">Update</button>
+        </form>
+
+        <form method="POST" action="{{ url_for('delete_budget', budget_id=budget.id) }}" style="display:inline;">
+            <button class="btn-delete" type="submit" onclick="return confirm('Delete this budget?');">
+                Delete
+            </button>
+        </form>
+        </td>
     </tr>
     {% endfor %}
 </table>
