@@ -26,7 +26,11 @@
         <p>£{{ balance }}</p>
     </div>
 </div>
+<h2>Spending Analytics</h2>
 
+<div class="chart-container">
+    <canvas id="expenseChart"></canvas>
+</div>
 <!-- Add transaction button -->
 <a href="{{ url_for('add_transaction') }}" class="btn-edit">
     Add Transaction
@@ -79,4 +83,21 @@
 {% else %}
 <p>No transactions yet.</p>
 {% endif %}
+<script>
+    const chartLabels = JSON.parse('{{ chart_labels | tojson | safe }}');
+    const chartValues = JSON.parse('{{ chart_values | tojson | safe }}');
+
+    const ctx = document.getElementById('expenseChart');
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                label: 'Expenses by Category',
+                data: chartValues
+            }]
+        }
+    });
+</script>
 {% endblock %}
