@@ -251,6 +251,38 @@ def budgets():
     return render_template("budgets.html", budgets=user_budgets)
 
 
+# Update budget from the same budget page
+@app.route("/update_budget/<int:budget_id>", methods=["POST"])
+@login_required
+def update_budget(budget_id):
+    budget = Budget.query.filter_by(
+        id=budget_id, user_id=current_user.id
+    ).first_or_404()
+
+    budget.category = request.form.get("category")
+    budget.monthly_limit = float(request.form.get("monthly_limit"))
+
+    db.session.commit()
+    flash("Budget updated successfully.", "success")
+
+    return redirect(url_for("budgets"))
+
+
+# Delete budget from the same budget page
+@app.route("/delete_budget/<int:budget_id>", methods=["POST"])
+@login_required
+def delete_budget(budget_id):
+    budget = Budget.query.filter_by(
+        id=budget_id, user_id=current_user.id
+    ).first_or_404()
+
+    db.session.delete(budget)
+    db.session.commit()
+    flash("Budget deleted successfully.", "info")
+
+    return redirect(url_for("budgets"))
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
