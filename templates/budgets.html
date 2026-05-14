@@ -16,16 +16,25 @@
 </form>
 
 <h2>Your Budgets</h2>
+
 {% if budgets %}
 <table>
+
     <tr>
         <th>Category</th>
         <th>Monthly Limit</th>
+        <th>Spent</th>
+        <th>Remaining</th>
+        <th>Status</th>
         <th>Actions</th>
     </tr>
+
     {% for budget in budgets %}
     <tr>
+
+        <!-- Update form -->
         <form method="POST" action="{{ url_for('update_budget', budget_id=budget.id) }}">
+
             <td>
                 <input type="text" name="category" value="{{ budget.category }}" required>
             </td>
@@ -34,18 +43,60 @@
                 <input type="number" step="0.01" name="monthly_limit" value="{{ budget.monthly_limit }}" required>
             </td>
 
+            <!-- Amount spent -->
             <td>
-                <button class="btn-edit" type="submit">Update</button>
+                £{{ budget.spent }}
+            </td>
+
+            <!-- Remaining budget -->
+            <td>
+                £{{ budget.remaining }}
+            </td>
+
+            <!-- Budget warning -->
+            <td>
+
+                {% if budget.exceeded %}
+
+                <span style="color:red; font-weight:bold;">
+                    Budget Exceeded
+                </span>
+
+                {% else %}
+
+                <span style="color:green; font-weight:bold;">
+                    Within Budget
+                </span>
+
+                {% endif %}
+
+            </td>
+
+            <!-- Action buttons -->
+            <td>
+
+                <button class="btn-edit" type="submit">
+                    Update
+                </button>
+
         </form>
 
+        <!-- Delete form -->
         <form method="POST" action="{{ url_for('delete_budget', budget_id=budget.id) }}" style="display:inline;">
+
             <button class="btn-delete" type="submit" onclick="return confirm('Delete this budget?');">
+
                 Delete
+
             </button>
+
         </form>
+
         </td>
+
     </tr>
     {% endfor %}
+
 </table>
 {% else %}
 <p>No budgets added yet.</p>
