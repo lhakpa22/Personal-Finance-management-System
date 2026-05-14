@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from models import db, User, Transaction
+from models import db, User, Transaction, Budget
 from flask_login import (
     LoginManager,
     login_user,
@@ -210,6 +210,29 @@ def delete_transaction(transaction_id):
 
     flash("Transaction deleted successfully.", "info")
     return redirect(url_for("dashboard"))
+
+
+# Route for budget management
+@app.route("/budgets", methods=["GET", "POST"])
+@login_required
+def budgets():
+
+    # Add new budget
+    if request.method == "POST":
+
+        category = request.form.get("category")
+        monthly_limit = request.form.get("monthly_limit")
+
+        try:
+            monthly_limit = float(monthly_limit)
+
+            if monthly_limit <= 0:
+                flash("Budget amount must be greater than zero.", "danger")
+                return redirect(url_for("budgets"))
+
+        except ValueError:
+            flash("Please enter a valid budget amount.", "danger")
+            return redirect(url_for("budgets"))
 
 
 if __name__ == "__main__":
