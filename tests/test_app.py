@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Add project root directory to Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 # Import the Flask app and database models
 from app import app, db
 from models import User, Transaction, Budget
@@ -41,5 +47,21 @@ def test_dashboard_requires_login():
 def test_add_transaction_requires_login():
     tester = app.test_client()
     response = tester.get("/add_transaction")
+
+    assert response.status_code == 302
+
+
+# Test budgets page redirects if user is not logged in
+def test_budgets_requires_login():
+    tester = app.test_client()
+    response = tester.get("/budgets")
+
+    assert response.status_code == 302
+
+
+# Test logout redirects correctly
+def test_logout_requires_login():
+    tester = app.test_client()
+    response = tester.get("/logout")
 
     assert response.status_code == 302
