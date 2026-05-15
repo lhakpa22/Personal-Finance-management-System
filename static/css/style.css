@@ -129,16 +129,16 @@ th, td {
    Chart Container Styling
 ========================= */
 .chart-container {
-    background: white;
+    background: gainsboro;
     padding: 20px;
     border-radius: 8px;
-    width: 400px;
-    height: 400px;
-    
-    /* Center chart */
-    margin: 0 auto 50px auto;
 
-    /* Flex alignment */
+    width: 450px;
+    height: 450px;
+
+    margin-top: 30px;
+    margin-bottom: 40px;
+
     display: flex;
     justify-content: center;
     align-items: center;

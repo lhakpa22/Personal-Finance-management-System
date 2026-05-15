@@ -87,17 +87,7 @@
     const chartLabels = JSON.parse('{{ chart_labels | tojson | safe }}');
     const chartValues = JSON.parse('{{ chart_values | tojson | safe }}');
 
-    const ctx = document.getElementById('expenseChart');
+    createExpenseChart(chartLabels, chartValues);
 
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: chartLabels,
-            datasets: [{
-                label: 'Expenses by Category',
-                data: chartValues
-            }]
-        }
-    });
 </script>
 {% endblock %}
