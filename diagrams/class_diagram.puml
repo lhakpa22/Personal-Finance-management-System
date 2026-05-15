@@ -1,0 +1,48 @@
+@startuml class_diagram
+title UML Class Diagram - Personal Finance Management System
+
+class User {
+    - id : Integer(PK)
+    - username : String
+    - email : String
+    - password_hash : String
+    --
+    + register(username, email, password):user
+    + login(email, password):boolean
+    + logout(): void
+    + get_id(): Integer
+}
+
+class Transaction {
+    - id : Integer (PK)
+    - transaction_type : String
+    - category : String
+    - amount : Float
+    - description : String
+    - date_created : DateTime
+    - user_id : Integer (FK)
+    --
+    + add_transaction(type, category, amount, description): transaction
+    + edit_transaction(id, type, category, amount, description): boolean
+    + delete_transaction(): boolean
+    + get_user_transactions(user_id): List<Transaction>
+}
+
+class Budget {
+    - id : Integer (PK)
+    - category : String
+    - monthly_limit : Float
+    - user_id : Integer (FK)
+
+    --
+    + add_budget(category, monthly_limit): budget
+    + update_budget(id, category, monthly_limit): boolean
+    + delete_budget(): boolean
+    + get_user_budgets(user_id): List<Budget>
+}
+
+User "1" -- "*" Transaction : owns
+User "1" -- "*" Budget : sets
+
+
+@enduml
