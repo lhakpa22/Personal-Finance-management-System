@@ -22,3 +22,28 @@ function createExpenseChart(labels, values) {
         }
     });
 }
+
+// Creates a bar chart for monthly expenses
+function createMonthlyChart(labels, values) {
+    const chartElement = document.getElementById("monthlyChart");
+
+    // Stop if chart element does not exist on this page
+    if (!chartElement) {
+        return;
+    }
+
+    new Chart(chartElement, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Monthly Expenses",
+                data: values
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+}

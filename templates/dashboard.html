@@ -31,6 +31,13 @@
 <div class="chart-container">
     <canvas id="expenseChart"></canvas>
 </div>
+
+<h2>Monthly Expense Trend</h2>
+
+<div class="chart-container">
+    <canvas id="monthlyChart"></canvas>
+</div>
+
 <!-- Add transaction button -->
 <a href="{{ url_for('add_transaction') }}" class="btn-edit">
     Add Transaction
@@ -84,10 +91,16 @@
 <p>No transactions yet.</p>
 {% endif %}
 <script>
+    // Expense pie chart data
     const chartLabels = JSON.parse('{{ chart_labels | tojson | safe }}');
     const chartValues = JSON.parse('{{ chart_values | tojson | safe }}');
 
+    // Monthly bar chart data
+    const monthlyLabels = JSON.parse('{{ monthly_labels | tojson | safe }}');
+    const monthlyValues = JSON.parse('{{ monthly_values | tojson | safe }}');
+
     createExpenseChart(chartLabels, chartValues);
+    createMonthlyChart(monthlyLabels, monthlyValues);
 
 </script>
 {% endblock %}

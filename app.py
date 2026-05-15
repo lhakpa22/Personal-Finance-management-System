@@ -114,6 +114,20 @@ def dashboard():
     chart_labels = list(expense_by_category.keys())
     chart_values = list(expense_by_category.values())
 
+    # Prepare monthly expense data
+    monthly_expenses = {}
+
+    for transaction in transactions:
+        if transaction.transaction_type == "expense":
+            month = transaction.date_created.strftime("%Y-%m")
+
+            monthly_expenses[month] = (
+                monthly_expenses.get(month, 0) + transaction.amount
+            )
+
+    monthly_labels = list(monthly_expenses.keys())
+    monthly_values = list(monthly_expenses.values())
+
     return render_template(
         "dashboard.html",
         transactions=transactions,
@@ -122,6 +136,8 @@ def dashboard():
         balance=balance,
         chart_labels=chart_labels,
         chart_values=chart_values,
+        monthly_labels=monthly_labels,
+        monthly_values=monthly_values,
     )
 
 
