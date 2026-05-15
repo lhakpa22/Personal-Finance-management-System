@@ -126,20 +126,33 @@ th, td {
 }
 
 /* =========================
-   Chart Container Styling
+   Charts Layout Styling
 ========================= */
+
+.charts-wrapper {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.chart-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 350px;
+}
+
+.chart-box h3 {
+    margin-top: 0;
+}
+
 .chart-container {
     background: gainsboro;
     padding: 20px;
     border-radius: 8px;
-
-    width: 450px;
-    height: 450px;
-
-    margin-top: 30px;
-    margin-bottom: 40px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 350px;
+    position: relative;
 }
