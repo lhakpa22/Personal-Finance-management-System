@@ -114,19 +114,28 @@ def dashboard():
     chart_labels = list(expense_by_category.keys())
     chart_values = list(expense_by_category.values())
 
-    # Prepare monthly expense data
-    monthly_expenses = {}
+    # Get selected month from dashboard filter
+    selected_month = request.args.get("month")
+
+    # If no month is selected, use current transaction month if available
+    if not selected_month and transactions:
+        selected_month = transactions[0].date_created.strftime("%Y-%m")
+
+    # Prepare category expenses for selected month
+    monthly_category_expenses = {}
 
     for transaction in transactions:
         if transaction.transaction_type == "expense":
-            month = transaction.date_created.strftime("%Y-%m")
+            transaction_month = transaction.date_created.strftime("%Y-%m")
 
-            monthly_expenses[month] = (
-                monthly_expenses.get(month, 0) + transaction.amount
-            )
+            if transaction_month == selected_month:
+                category = transaction.category
+                monthly_category_expenses[category] = (
+                    monthly_category_expenses.get(category, 0) + transaction.amount
+                )
 
-    monthly_labels = list(monthly_expenses.keys())
-    monthly_values = list(monthly_expenses.values())
+    monthly_labels = list(monthly_category_expenses.keys())
+    monthly_values = list(monthly_category_expenses.values())
 
     return render_template(
         "dashboard.html",
@@ -138,6 +147,7 @@ def dashboard():
         chart_values=chart_values,
         monthly_labels=monthly_labels,
         monthly_values=monthly_values,
+        selected_month=selected_month,
     )
 
 

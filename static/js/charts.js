@@ -23,7 +23,7 @@ function createExpenseChart(labels, values) {
     });
 }
 
-// Creates a bar chart for monthly expenses
+// Creates a bar chart for category expenses in selected month
 function createMonthlyChart(labels, values) {
     const chartElement = document.getElementById("monthlyChart");
 
@@ -37,7 +37,7 @@ function createMonthlyChart(labels, values) {
         data: {
             labels: labels,
             datasets: [{
-                label: "Monthly Expenses",
+                label: "Expenses by Category for Selected Month",
                 data: values
             }]
         },

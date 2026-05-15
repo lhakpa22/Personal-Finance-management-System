@@ -26,16 +26,29 @@
         <p>£{{ balance }}</p>
     </div>
 </div>
+
 <h2>Spending Analytics</h2>
 
-<div class="chart-container">
-    <canvas id="expenseChart"></canvas>
-</div>
+<div class="charts-wrapper">
 
-<h2>Monthly Expense Trend</h2>
+    <!-- Pie Chart -->
+    <div class="chart-box">
+        <h3>Expense Categories</h3>
 
-<div class="chart-container">
-    <canvas id="monthlyChart"></canvas>
+        <div class="chart-container">
+            <canvas id="expenseChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="chart-box">
+        <h3>Monthly Category Expenses</h3>
+
+        <div class="chart-container">
+            <canvas id="monthlyChart"></canvas>
+        </div>
+    </div>
+
 </div>
 
 <!-- Add transaction button -->
