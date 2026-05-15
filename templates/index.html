@@ -1,6 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Welcome to the Personal Finance Management System</h1>
-<p>Track your income, expenses, and manage your personal budget.</p>
+
+<!-- Hero Section -->
+<section class="home-page">
+
+    <h1>Welcome to KharchaKit</h1>
+
+    <p>
+        Your personal finance management system designed to help you take control of your
+        finances.
+    </p>
+
+    <a href="{{ url_for('register') }}" class="home-btn">
+        Get Started
+    </a>
+
+</section>
+
+<!-- Features Section -->
+<section class="features">
+
+    <div class="feature-card">
+        <h2>Track Expenses</h2>
+        <p>
+            Record daily income and expenses with categories and descriptions.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h2>Manage Budgets</h2>
+        <p>
+            Set monthly spending limits for categories such as food, travel, and rent.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h2>View Analytics</h2>
+        <p>
+            Analyse spending behaviour using pie charts and bar charts.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h2>Budget Alerts</h2>
+        <p>
+            Receive warnings when spending exceeds your monthly budget.
+        </p>
+    </div>
+
+</section>
+
 {% endblock %}
