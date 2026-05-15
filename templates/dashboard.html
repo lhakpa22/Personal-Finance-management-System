@@ -43,6 +43,12 @@
     <!-- Bar Chart -->
     <div class="chart-box">
         <h3>Monthly Category Expenses</h3>
+        <!-- Month filter form -->
+        <form method="GET" action="{{ url_for('dashboard') }}" class="month-filter">
+            <label>Select Month</label>
+            <input type="month" name="month" value="{{ selected_month }}">
+            <button type="submit">View Month</button>
+        </form>
 
         <div class="chart-container">
             <canvas id="monthlyChart"></canvas>
