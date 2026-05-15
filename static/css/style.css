@@ -57,7 +57,7 @@ form button {
 }
 
 .card {
-    background: white;
+    background:gainsboro;
     padding: 20px;
     border-radius: 8px;
     flex: 1;
@@ -163,7 +163,7 @@ th, td {
 .home-page {
     text-align: center;
     padding: 80px 20px;
-    background: white;
+    background: gainsboro;
     border-radius: 12px;
     margin-bottom: 40px;
 }
@@ -176,7 +176,7 @@ th, td {
 
 .home-page p {
     font-size: 22px;
-    color: #555;
+    color: black;
     margin-bottom: 30px;
 }
 
@@ -201,7 +201,7 @@ th, td {
 }
 
 .feature-card {
-    background: white;
+    background: gainsboro;
     padding: 30px;
     border-radius: 12px;
     flex: 1;
@@ -213,6 +213,6 @@ th, td {
 }
 
 .feature-card p {
-    color: #555;
+    color:black;
     line-height: 1.6;
 }
