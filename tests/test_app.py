@@ -26,3 +26,20 @@ def test_login_page():
     response = tester.get("/login")
 
     assert response.status_code == 200
+
+
+# Test dashboard redirects if user is not logged in
+def test_dashboard_requires_login():
+    tester = app.test_client()
+    response = tester.get("/dashboard")
+
+    # Flask-Login redirects unauthenticated users to login page
+    assert response.status_code == 302
+
+
+# Test add transaction page redirects if user is not logged in
+def test_add_transaction_requires_login():
+    tester = app.test_client()
+    response = tester.get("/add_transaction")
+
+    assert response.status_code == 302
