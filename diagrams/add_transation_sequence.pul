@@ -1,0 +1,19 @@
+@startuml
+
+actor User
+participant "Flask App" as App
+database "SQLite Database" as DB
+
+User -> App : Open Add Transaction Page
+App -> User : Display Form
+
+User -> App : Submit Transaction Details
+
+App -> App : Validate Input
+
+App -> DB : Save Transaction
+DB --> App : Transaction Saved
+
+App -> User : Redirect to Dashboard
+
+@enduml
