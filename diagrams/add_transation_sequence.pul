@@ -2,7 +2,7 @@
 
 actor User
 participant "Flask App" as App
-database "SQLite Database" as DB
+database "Database (SQLite/PostgreSQL)" as DB
 
 User -> App : Open Add Transaction Page
 App -> User : Display Form
