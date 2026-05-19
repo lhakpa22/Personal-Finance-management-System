@@ -397,7 +397,7 @@ with app.app_context():
 @login_required
 def all_users():
 
-    if current_user.email != "your_email@gmail.com":
+    if current_user.id != 1:
         return "Access Denied"
 
     users = User.query.all()
