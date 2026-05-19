@@ -389,5 +389,15 @@ def delete_budget(budget_id):
 with app.app_context():
     db.create_all()
 
+
+# Admin route to view users
+@app.route("/all_users")
+def all_users():
+
+    users = User.query.all()
+
+    return render_template("all_users.html", users=users)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
