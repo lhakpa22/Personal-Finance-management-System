@@ -1,39 +1,51 @@
 # KharchaKit - Personal Finance Management System
 
 ## Project Overview
-KharchaKit is a web-based personal finance management system developed using Flask. The system helps users manage income, expenses, budgets, and spending analytics through a secure and user-friendly dashboard.
+
+KharchaKit is a web-based personal finance management system developed using Flask. The application helps users manage personal income, expenses, budgets, and financial analytics through a secure and user-friendly dashboard. The system allows users to monitor spending behaviour, manage monthly budgets, and visualise financial data using interactive charts.
+The project was developed as part of a software engineering dissertation project and demonstrates concepts such as authentication, database integration, responsive web design, testing, and cloud deployment
 
 ## Features
 - User registration and login
 - Secure password hashing
+- Forgot password functionality
 - Add, edit, and delete transactions
 - Income and expense tracking
 - Budget management
 - Budget warning system
 - Spending analytics with charts
 - Monthly category expense analysis
-- SQLite database integration
+- Responsive mobile-friendly interface
+- PostgreSQL cloud database integration
 - Automated route testing using pytest
+- Cloud deployment using Render
 
 ## Technologies Used
+
+### Backend
 - Python
 - Flask
-- SQLite
 - SQLAlchemy
+- Flask-Login
+
+### Frontend
 - HTML
 - CSS
 - JavaScript
 - Chart.js
+
+### Database
+- SQLite (local development)
+- PostgreSQL (cloud deployment)
+
+### Testing & Deployment
 - Pytest
 - GitHub
+- Render
 
-## How to Run the Project
-in Terminal
-1. Install dependencies:
+## Live Website
 
-pip install -r requirements.txt
-2. python app.py
-3. open browser
-http://127.0.0.1:5000
+```text
+https://personal-finance-management-system-oru3.onrender.com
 4. run testing 
 pytest
