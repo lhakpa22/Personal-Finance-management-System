@@ -20,7 +20,7 @@ nav {
 nav h2 {
     margin: 0;
     white-space: nowrap;
-    font-size: 28px;
+    font-size: 28px; ;
 }
 
 .nav-links {
@@ -285,4 +285,20 @@ th, td {
     .user-name {
         font-size: 14px;
     }
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.forgot-password a {
+    color: #1877f2;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
 }

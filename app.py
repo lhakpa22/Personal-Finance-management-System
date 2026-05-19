@@ -78,6 +78,32 @@ def login():
     return render_template("login.html")
 
 
+# Route for forgotten password reset
+@app.route("/forgot_password", methods=["GET", "POST"])
+def forgot_password():
+    if request.method == "POST":
+        username = request.form.get("username")
+        email = request.form.get("email")
+        new_password = request.form.get("new_password")
+
+        # Find user by username and email
+        user = User.query.filter_by(username=username, email=email).first()
+
+        if not user:
+            flash("No account found with those details.", "danger")
+            return redirect(url_for("forgot_password"))
+
+        # Hash and update new password
+        user.password_hash = generate_password_hash(new_password)
+
+        db.session.commit()
+
+        flash("Password reset successful. Please log in.", "success")
+        return redirect(url_for("login"))
+
+    return render_template("forgot_password.html")
+
+
 @app.route("/logout")
 @login_required
 def logout():
