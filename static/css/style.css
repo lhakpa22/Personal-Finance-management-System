@@ -17,11 +17,42 @@ nav {
     z-index: 1000;
 }
 
+nav h2 {
+    margin: 0;
+    white-space: nowrap;
+    font-size: 28px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+
 nav a {
     color: white;
     text-decoration: none;
     margin-left: 15px;
 }
+
+.user-profile {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #ffc107;
+    color: #222;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
 .container {
     width: 85%;
     margin: 40px auto;
@@ -234,4 +265,24 @@ th, td {
 .feature-card p {
     color:black;
     line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .nav-links {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    nav a,
+    .user-name {
+        font-size: 14px;
+    }
 }
