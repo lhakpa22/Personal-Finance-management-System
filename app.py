@@ -393,9 +393,12 @@ with app.app_context():
     db.create_all()
 
 
-# Admin route to view users
 @app.route("/all_users")
+@login_required
 def all_users():
+
+    if current_user.email != "your_email@gmail.com":
+        return "Access Denied"
 
     users = User.query.all()
 
