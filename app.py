@@ -87,7 +87,9 @@ def forgot_password():
         new_password = request.form.get("new_password")
 
         # Find user by username and email
-        user = User.query.filter_by(username=username, email=email).first()
+        user = User.query.filter(
+            User.username.ilike(username), User.email.ilike(email)
+        ).first()
 
         if not user:
             flash("No account found with those details.", "danger")
